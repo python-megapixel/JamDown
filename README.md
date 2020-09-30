@@ -14,7 +14,7 @@ Yes, but not much. You should be able to get a reasonably good site working usin
 + have a basic knowledge of HTML and CSS
 + feel comfortable navigating Github
 + feel comfortable with the idea of configuration carried out by editing files (rather than some graphical thingamajig)
-+ are able to write content in Markdown (and if you don't, don't worry, it's the simplest thing ever, [this short page probably contains all you need](https://www.markdownguide.org/cheat-sheet/))
++ are able to write content in Markdown (and if you don't, don't worry, it's the simplest thing ever, [this short page probably contains all you need](https://www.markdownguide.org/cheat-sheet/) )
 
 # How can I get started?
 Head over to [this project's wiki](https://github.com/python-megapixel/JamDown/wiki) and follow the instructions. Don't worry, it's very simple.
@@ -24,5 +24,5 @@ Yes.
 *__Note:__ A credit and link back to this page somewhere on the site would be appreciated, but is not required.*
 
 # Can I do [something else]?
-Maybe. Please check [license.txt](https://github.com/python-megapixel/JamDown/blob/master/license.txt).
+Maybe. Please check [license.txt](https://github.com/python-megapixel/JamDown/blob/master/license.txt)
 This project is licensed under the GNU Affero GPL 3.0.
