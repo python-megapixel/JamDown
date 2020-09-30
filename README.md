@@ -17,7 +17,7 @@ Yes, but not much. You should be able to get a reasonably good site working usin
 + are able to write content in Markdown (and if you don't, don't worry, it's the simplest thing ever, [this short page probably contains all you need](https://www.markdownguide.org/cheat-sheet/))
 
 # How can I get started?
-Head over to [this project's wiki](https://github.com/python-megapixel/JamDown/wiki) and 
+Head over to [this project's wiki](https://github.com/python-megapixel/JamDown/wiki) and follow the instructions. Don't worry, it's very simple.
 
 # Can I use this to build my own site?
 Yes.
