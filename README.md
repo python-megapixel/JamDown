@@ -25,4 +25,3 @@ Yes.
 
 # Can I do [something else]?
 Maybe. Please check [license.txt](https://github.com/python-megapixel/JamDown/blob/master/license.txt)
-This project is licensed under the GNU Affero GPL 3.0.
