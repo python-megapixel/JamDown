@@ -16,7 +16,7 @@ def style(passedParams):
 		head = "<style>" + template.read() + "</style>" + head
 		
 
-commands = {"useTemplate": useTemplate, "linkStyle": style, "titleBar", pageTitle}
+commands = {"useTemplate": useTemplate, "linkStyle": style}
 
 def doCmd(cmd):
 	global commands
@@ -68,7 +68,10 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
         print("|- Built page '" + strippedname + "'")
         done=done+1
 
-       
+try:
+	shutil.copytree("verbatim", "buildout/verbatim")
+except:
+	pass
 
 print("BUILD DONE (built " + str(done) + ", skipped " +str(skipped) + ")")
 
