@@ -15,7 +15,7 @@ def style(passedParams):
 		head = "<style>" + template.read() + "</style>" + top
 		
 
-commands = {"useTemplate": useTemplate, "linkStyle": style, "titleBar", pageTitle}
+commands = {"useTemplate": useTemplate, "linkStyle": style,}
 
 def doCmd(cmd):
 	global commands
