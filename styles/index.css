@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;700&family=Montserrat+Alternates:wght@400;600&family=Roboto+Slab:wght@300;700&display=swap");
+
+/* Font specifications */
+
+h1 {font-family: 'Roboto Slab', serif}
+h2, h3, h4, h5, h6{font-family: 'Inter', sans-serif;font-weight: 700;}
+p, a, td, .normalfont{font-family: 'Inter', sans-serif;}	
+
+table {background-color: lightyellow;}
+
+
+/* Responsive font sizes */
+body {font-size: 100%;font-size: calc(12px + 1vw);margin:0;}
+
+
+.errorcode {font-size: 8em;text-align:center;color:white;}
+h1, .logo{font-size: 1.777em;}
+h2,.minilogo, #main-title{font-size:1.333em;}
+h3{font-size:1em;}
+h4, p {font-size:0.75em;}
+h5{font-size:0.563em;}
+h6{font-size:0.125em;}
+
+
+/* Branding designs */
+.fg-pym-green{color:#64DD17;}
+.bg-pym-green{background-color:#64DD17;}
+.fg-pym-blue{color:#2196F3;}
+.bg-pym-blue{background-color:#2196F3;}
+.fg-pym-red{color:#FF0000;}
+.bg-pym-red{background-color:#FF0000;}
+.pym-logo-font{font-family: 'Roboto Slab', serif!important;font-weight:700;text-shadow: 1px 1px black;}
+.etudec-logo-font{font-family: 'Montserrat Alternates', sans-serif!important; font-weight:600!important;}
+.etudec-logo-font-light{font-family: 'Montserrat Alternates', sans-serif!important; font-weight:400!important;}
+
+
+
+/* Responsive Menu*/
+
+@media screen and (orientation:landscape) {
+#main-content {
+	margin-left: 300px;
+	margin-right: 300px;
+	padding: 50px;
+	}
+	
+#side-menu {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#2196F3;
+  overflow-x: hidden;
+  padding-top: 20px;
+  }
+ 
+ #side-menu-open-button {
+ display: none;
+ }
+ 
+ #side-menu a {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  display: block;
+  font-size:1em;
+} 
+ 
+
+ #menu-button, #close-button {
+ display: none;
+ }
+
+
+
+}
+
+@media screen and (orientation:portrait) {
+#main-content {
+	margin-left: 0px;
+	padding-top: 100px;
+	}
+	
+#side-menu {
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#2196F3;
+  overflow-y: hidden;
+  height: 60px;
+  }
+ 
+ #side-menu-open-button {
+ display: none;
+ }
+ 
+ #side-menu a, #side-menu u {
+	display: none;
+	}
+
+#side-menu iframe {
+	display: none;
+}
+.mt-break {
+display: none;	
+	}
+	
+#side-menu img {
+	display: none;
+	}
+
+#menu-button {
+ display: block;
+ float: right;
+ margin-right: 20px;
+ font-family: 'Inter', sans-serif;
+ font-size: 0.563em;
+ background: none;
+ border: none;
+ color: white;
+ }
+ 
+#close-button {
+ display: none;
+ float: right;
+ font-family: 'Inter', sans-serif;
+ font-size: 0.563em;
+ margin-right: 20px;
+ background: none;
+ border: none;
+ color: white;
+ }
+
+
+
+
+}
+
+
+
+
+#side-menu a:hover {
+  background-color: white;
+  color: black;
+}
+
+#links {
+	width: 100%;
+	height: 100%;
+	border: none;
+	}
