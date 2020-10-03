@@ -1,2 +1,4 @@
-@@useTemplate default
-build the rest
+@@linkStyle index
+@@useTemplate main
+
+Testing Testing Testing Testing
