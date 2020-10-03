@@ -1,8 +1,2 @@
-@@Begin XMLConf
-
-@@End
-
-@@Begin PageContent
-
-
-@@End
+@@useTemplate default
+build the rest
