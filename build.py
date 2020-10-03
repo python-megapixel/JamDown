@@ -11,8 +11,9 @@ def useTemplate(passedParams):
 	return 0
 		
 def style(passedParams):
+	global head
 	with open("styles/" + passedParams[0] + ".css", "r", encoding="utf-8") as template:
-		head = "<style>" + template.read() + "</style>" + top
+		head = "<style>" + template.read() + "</style>" + head
 		
 
 commands = {"useTemplate": useTemplate, "linkStyle": style}
@@ -67,7 +68,10 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
         print("|- Built page '" + strippedname + "'")
         done=done+1
 
-       
+try:
+	shutil.copytree("verbatim", "buildout/verbatim")
+except:
+	pass
 
 print("BUILD DONE (built " + str(done) + ", skipped " +str(skipped) + ")")
 
