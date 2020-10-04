@@ -21,7 +21,7 @@ def script(passedParams):
 		head = "<script>" + template.read() + "</script>" + head
 		
 
-commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript", script}
+commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript": script}
 
 def doCmd(cmd):
 	global commands
