@@ -14,9 +14,17 @@ def style(passedParams):
 	global head
 	with open("styles/" + passedParams[0] + ".css", "r", encoding="utf-8") as template:
 		head = "<style>" + template.read() + "</style>" + head
+	
+def script(passedParams):
+	global head
+	with open("scripts/" + passedParams[0] + ".js", "r", encoding="utf-8") as template:
+		head = "<script>" + template.read() + "</script>" + head
 		
+def comment(passedParams):
+	pass
+		
+commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript": script, "#": comment}
 
-commands = {"useTemplate": useTemplate, "linkStyle": style}
 
 def doCmd(cmd):
 	global commands
