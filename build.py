@@ -4,21 +4,32 @@ import xml.etree.ElementTree as ET
 def useTemplate(passedParams):
 	global top
 	global end
-	with open("templates/" + passedParams[0] + "/topmatter.html", "r", encoding="utf-8") as template:
-		top = template.read() + top
-	with open("templates/" + passedParams[0] + "/bottommatter.html", "r", encoding="utf-8") as template2:
-		end = end + template2.read()
-	return 0
+	try:
+		with open("templates/" + passedParams[0] + "/topmatter.html", "r", encoding="utf-8") as template:
+			top = template.read() + top
+		with open("templates/" + passedParams[0] + "/bottommatter.html", "r", encoding="utf-8") as template2:
+			end = end + template2.read()
+	except FileNotFoundError:
+		print("|--- [WARNING] Directive useTemplate failed - template " + passedParams[0] + " invalid or not found.")
+		
 		
 def style(passedParams):
 	global head
-	with open("styles/" + passedParams[0] + ".css", "r", encoding="utf-8") as template:
-		head = "<style>" + template.read() + "</style>" + head
+	try:
+		with open("styles/" + passedParams[0] + ".css", "r", encoding="utf-8") as template:
+			head = "<style>" + template.read() + "</style>" + head
+	except FileNotFoundError:
+		print("|--- [WARNING] Directive linkStyle failed - stylesheet " + passedParams[0] + " not found.")
+
 	
 def script(passedParams):
 	global head
-	with open("scripts/" + passedParams[0] + ".js", "r", encoding="utf-8") as template:
-		head = "<script>" + template.read() + "</script>" + head
+	try:
+		with open("scripts/" + passedParams[0] + ".js", "r", encoding="utf-8") as template:
+			head = "<script>" + template.read() + "</script>" + head
+	except FileNotFoundError:
+		print("|--- [WARNING] Directive linkScript failed - scriptfile " + passedParams[0] + " not found.")
+
 		
 def comment(passedParams):
 	pass
@@ -41,7 +52,19 @@ print("|-Checking if buildout directory exists...", end="")
 try:
 	shutil.rmtree("buildout")
 	print("yes \n|-Removing the buildout directory")
-except:
+except FileNotFoundError:
+	print("no")
+
+
+print("|-Checking if global.conf exists...", end="")
+try:
+	with open("global.conf", "r", encoding="utf-8") as gblconf:
+		lines = gblconf.readlines()
+		scope = 1
+		for line in lines:
+			doCmd(line.lstrip())
+	print("yes \n|-Removing the buildout directory")
+except FileNotFoundError:
 	print("no")
 
 
@@ -57,8 +80,9 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
      with open(filename, "r", encoding="utf-8") as input_file:
         lines = input_file.readlines()
         for line in lines:
+            scope = 3
             if line.lstrip()[:2] == "@@":
-               doCmd(line.lstrip()[2:])
+                doCmd(line.lstrip()[2:])
             else:
                text = text + line    
 			
@@ -82,5 +106,3 @@ except:
 	pass
 
 print("BUILD DONE (built " + str(done) + ", skipped " +str(skipped) + ")")
-
-
