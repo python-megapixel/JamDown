@@ -1,4 +1,4 @@
-import markdown, glob,os,shutil
+import markdown, glob,os,shutil,pathlib
 import xml.etree.ElementTree as ET
 
 def useTemplate(passedParams):
@@ -8,9 +8,15 @@ def useTemplate(passedParams):
 		with open("templates/" + passedParams[0] + "/topmatter.html", "r", encoding="utf-8") as template:
 			top = template.read() + top
 		with open("templates/" + passedParams[0] + "/bottommatter.html", "r", encoding="utf-8") as template2:
-			end = end + template2.read()
+			end = end + template2.read()			
 	except FileNotFoundError:
 		print("|--- [WARNING] Directive useTemplate failed - template " + passedParams[0] + " invalid or not found.")
+	try:
+		with open("templates/" + passedParams[0] + "/template.jcnf", "r", encoding="utf-8") as template3:
+			for line in template3.readlines():
+				doCmd(line)
+	except:
+		pass
 		
 		
 def style(passedParams):
@@ -40,7 +46,10 @@ commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript": script
 def doCmd(cmd):
 	global commands
 	fn = commands[cmd.split()[0]]
-	return fn(cmd.split()[1:])
+	try:
+		fn(cmd.split()[1:])
+	except:
+		print("|--- [WARNING] Ignored directive '" + cmd + "' due to unknown error, maybe command is not in valid scope?")
 		
 	
 
@@ -53,18 +62,33 @@ try:
 	shutil.rmtree("buildout")
 	print("yes \n|-Removing the buildout directory")
 except FileNotFoundError:
-	print("no")
+	try:
+		os.rmdir("buildout")
+		print("yes \n|-Removing the buildout directory")
+	except FileNotFoundError:
+		print("no")
 
 
-print("|-Checking if global.conf exists...", end="")
+print("|-Checking if global.jcnf exists...", end="")
 try:
-	with open("global.conf", "r", encoding="utf-8") as gblconf:
+	with open("global.jcnf", "r", encoding="utf-8") as gblconf:
 		lines = gblconf.readlines()
 		scope = 1
 		for line in lines:
 			doCmd(line.lstrip())
-	print("yes \n|-Removing the buildout directory")
+	print("yes \n|-Following directives in global.jcnf")
 except FileNotFoundError:
+	print("no")
+
+
+print("|-Checking if all.jcnf exists...", end="")
+try:
+	allconf = open("all.jcnf", "r", encoding="utf-8")
+	allconftext = allconf.read()
+	allconf.close()
+	print("yes")
+except FileNotFoundError:
+	allconftext = str()
 	print("no")
 
 
@@ -77,6 +101,8 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
      head = ""
      end = ""
      strippedname = filename[:-5].replace("content","")
+     for line in allconftext.split("\n"):
+        doCmd(line.lstrip())
      with open(filename, "r", encoding="utf-8") as input_file:
         lines = input_file.readlines()
         for line in lines:
@@ -93,7 +119,7 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
         slash_delimited_dir = "buildout/"
         for i in directory_structure:
             slash_delimited_dir  = slash_delimited_dir + "/" + "i"
-        os.makedirs(slash_delimited_dir)
+        pathlib.Path(slash_delimited_dir).mkdir(parents=True, exist_ok=True)
         f = open(("buildout/"+strippedname+".html"), "w+")
         f.write(content)
         f.close()
