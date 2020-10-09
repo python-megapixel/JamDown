@@ -45,7 +45,7 @@ commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript": script
 
 def doCmd(cmd):
 	global commands
-	if command != "":
+	if cmd != "":
 		fn = commands[cmd.split()[0]]
 		try:
 			fn(cmd.split()[1:])
