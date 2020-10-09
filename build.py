@@ -45,11 +45,12 @@ commands = {"useTemplate": useTemplate, "linkStyle": style, "linkScript": script
 
 def doCmd(cmd):
 	global commands
-	fn = commands[cmd.split()[0]]
-	try:
-		fn(cmd.split()[1:])
-	except:
-		print("|--- [WARNING] Ignored directive '" + cmd + "' due to unknown error, maybe command is not in valid scope?")
+	if command != "":
+		fn = commands[cmd.split()[0]]
+		try:
+			fn(cmd.split()[1:])
+		except:
+			print("|--- [WARNING] Ignored directive '" + cmd + "' due to unknown error, maybe command is not in valid scope?")
 		
 	
 
