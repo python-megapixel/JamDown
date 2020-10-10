@@ -128,7 +128,7 @@ for filename in glob.iglob('content/**/*.jcpd', recursive=True):
         done=done+1
 
 try:
-	shutil.copytree("verbatim", "buildout/verbatim")
+	shutil.copytree("verbatim", "buildout/")
 except:
 	pass
 
