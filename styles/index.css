@@ -51,7 +51,7 @@ h6{font-size:0.125em;}
   z-index: 1;
   top: 0;
   left: 0;
-  background-color:#2196F3;
+  background-color:#FF0000;
   overflow-x: hidden;
   padding-top: 20px;
   }
@@ -61,6 +61,7 @@ h6{font-size:0.125em;}
  }
  
  #side-menu a {
+  transition: 0.2s;
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 5px;
@@ -71,7 +72,12 @@ h6{font-size:0.125em;}
   color: white;
   display: block;
   font-size:1em;
-} 
+}
+
+#side-menu a:hover {
+	background-color: white;
+	color: black;
+	}
  
 
  #menu-button, #close-button {
@@ -95,7 +101,7 @@ h6{font-size:0.125em;}
   z-index: 1;
   top: 0;
   left: 0;
-  background-color:#2196F3;
+  background-color:#FF0000;
   overflow-y: hidden;
   height: 60px;
   }
@@ -140,22 +146,3 @@ display: none;
  border: none;
  color: white;
  }
-
-
-
-
-}
-
-
-
-
-#side-menu a:hover {
-  background-color: white;
-  color: black;
-}
-
-#links {
-	width: 100%;
-	height: 100%;
-	border: none;
-	}
