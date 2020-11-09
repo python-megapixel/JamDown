@@ -96,36 +96,40 @@ except FileNotFoundError:
 done = 0
 skipped = 0
 
-for filename in glob.iglob('content/**/*.jcpd', recursive=True):
-     text = ""
-     top  = ""
-     head = ""
-     end = ""
-     strippedname = filename[:-5].replace("content","")
-     for line in allconftext.split("\n"):
-        doCmd(line.lstrip())
-     with open(filename, "r", encoding="utf-8") as input_file:
-        lines = input_file.readlines()
-        for line in lines:
-            scope = 3
-            if line.lstrip()[:2] == "@@":
-                doCmd(line.lstrip()[2:])
-            else:
-               text = text + line    
-			
-        
-        content = "<html> <head>" + head + "</head> <body>" + top + markdown.markdown(text) + end + "</body> </html>"
-        
-        directory_structure = strippedname.rsplit("/",1)[1:]
-        slash_delimited_dir = "buildout/"
-        for i in directory_structure:
-            slash_delimited_dir  = slash_delimited_dir + "/" + "i"
-        pathlib.Path(slash_delimited_dir).mkdir(parents=True, exist_ok=True)
-        f = open(("buildout/"+strippedname+".html"), "w+")
-        f.write(content)
-        f.close()
-        print("|- Built page '" + strippedname + "'")
-        done=done+1
+def parse(dotExtension):
+    for filename in glob.iglob('content/**/*.'+dotExtension, recursive=True):
+         text = ""
+         top  = ""
+         head = ""
+         end = ""
+         strippedname = filename[:-5].replace("content","")
+         for line in allconftext.split("\n"):
+            doCmd(line.lstrip())
+         with open(filename, "r", encoding="utf-8") as input_file:
+            lines = input_file.readlines()
+            for line in lines:
+                scope = 3
+                if line.lstrip()[:2] == "@@":
+                    doCmd(line.lstrip()[2:])
+                else:
+                   text = text + line    
+                            
+            
+            content = "<html> <head>" + head + "</head> <body>" + top + markdown.markdown(text) + end + "</body> </html>"
+            
+            directory_structure = strippedname.rsplit("/",1)[1:]
+            slash_delimited_dir = "buildout/"
+            for i in directory_structure:
+                slash_delimited_dir  = slash_delimited_dir + "/" + "i"
+            pathlib.Path(slash_delimited_dir).mkdir(parents=True, exist_ok=True)
+            f = open(("buildout/"+strippedname+".html"), "w+")
+            f.write(content)
+            f.close()
+            print("|- Built page '" + strippedname + "'")
+            done=done+1
+
+parse('md')
+parse('jcpd')
 
 try:
 	shutil.copytree("verbatim", "buildout/verbatim")
