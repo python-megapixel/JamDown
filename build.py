@@ -103,7 +103,7 @@ def parse(dotExtension):
          top  = ""
          head = ""
          end = ""
-         strippedname = filename[:-5].replace("content","")
+         strippedname = filename[:0-len(dotExtension)+1].replace("content","")
          for line in allconftext.split("\n"):
             doCmd(line.lstrip())
          with open(filename, "r", encoding="utf-8") as input_file:
