@@ -97,6 +97,7 @@ done = 0
 skipped = 0
 
 def parse(dotExtension):
+    global done
     for filename in glob.iglob('content/**/*.'+dotExtension, recursive=True):
          text = ""
          top  = ""
