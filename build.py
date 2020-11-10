@@ -1,5 +1,10 @@
-import markdown, glob,os,shutil,pathlib
+import glob,os,shutil,pathlib
 import xml.etree.ElementTree as ET
+
+try:
+	import markdown
+except:
+	print("[ERROR] Markdown not installed!")
 
 def useTemplate(passedParams):
 	global top
